@@ -54,14 +54,14 @@ acl_get_file(const char *path_p, acl_type_t type)
 
 	if (!ext_acl_p)
 		return NULL;
-	retval = getxattr(path_p, name, ext_acl_p, size_guess);
+	retval = getxattr(path_p, name, ext_acl_p, size_guess, 0, 0);
 	if (retval == -1 && errno == ERANGE) {
-		retval = getxattr(path_p, name, NULL, 0);
+		retval = getxattr(path_p, name, NULL, 0, 0, 0);
 		if (retval > 0) {
 			ext_acl_p = alloca(retval);
 			if (!ext_acl_p)
 				return NULL;
-			retval = getxattr(path_p, name, ext_acl_p, retval);
+			retval = getxattr(path_p, name, ext_acl_p, retval, 0, 0);
 		}
 	}
 	if (retval > 0) {

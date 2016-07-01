@@ -32,6 +32,9 @@
 #include <acl/libacl.h>
 #include "misc.h"
 
+#define readdir64 readdir
+#define dirent64 dirent
+
 static int acl_delete_file (const char * path, acl_type_t type);
 static int list_acl(char *file);
 static int set_acl(acl_t acl, acl_t dacl, const char *fname);

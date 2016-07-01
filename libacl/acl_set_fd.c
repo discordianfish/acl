@@ -44,7 +44,7 @@ acl_set_fd(int fd, acl_t acl)
 	ext_acl_p = __acl_to_xattr(acl_obj_p, &size);
 	if (!ext_acl_p)
 		return -1;
-	error = fsetxattr(fd, name, (char *)ext_acl_p, size, 0);
+	error = fsetxattr(fd, name, (char *)ext_acl_p, size, 0, 0);
 	free(ext_acl_p);
 	return error;
 }
